@@ -67,11 +67,11 @@ function page() {
             <h1 className="text-6xl font-bold">Latest Properties</h1>
             <Link
               href={""}
-              className="text-2xl text-gray-600 hover:text-green-500 hover:cursor-pointer"
+              className="text-2xl bg-green-600 text-gray-600 hover:text-green-500 hover:cursor-pointer"
             >
             View All
             </Link>
-          </div> dfgdff
+          </div> 
 
           <div className="mt-10">
             <Card limit={3} pagination={false} />
