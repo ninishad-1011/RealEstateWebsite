@@ -8,6 +8,8 @@
       "bedroom": 4,
       "bathroom": 3,
       "area": "3200 sqft",
+    "floorplan": ["/plan2.jpg"],
+
       "images": [
         "/Image/properties/house-3.jpg",
         "/Image/properties/pexels-heyho-6316066.jpg"
@@ -25,6 +27,7 @@
       "bedroom": 3,
       "bathroom": 2,
       "area": "1800 sqft",
+      "floorplan": ["/plan2.jpg"],
       "images": [
         "/Image/properties/pexels-heyho-6316066.jpg",
         "/Image/properties/house-3.jpg"
@@ -41,6 +44,7 @@
       "price": 9000000,
       "bedroom": 3,
       "bathroom": 2,
+        "floorplan": ["/plan2.jpg"],
       "area": "1500 sqft",
       "images": [
         "/Image/properties/house-2.jpg",
@@ -48,6 +52,7 @@
       ],
       "status": "For Sale",
       "address": "",
+      
       "amenities": ["Parking", "Water Supply", "Security","Balcony","Sun Room","Internet","Cable TV"],
       "description": "A cozy family house offering a peaceful environment with good ventilation and practical living spaces."
     },
@@ -59,6 +64,7 @@
       "bedroom": 6,
       "bathroom": 4,
       "area": "5000 sqft",
+        "floorplan": ["/plan2.jpg"],
       "images": [
         "/Image/properties/pexels-heyho-6492386.jpg",
         "/Image/properties/house-2.jpg"
@@ -76,6 +82,7 @@
       "bedroom": 3,
       "bathroom": 3,
       "area": "2000 sqft",
+      "floorplan": ["/plan2.jpg"],
       "images": [
         "/Image/properties/pexels-heyho-7018850.jpg",
         "/Image/properties/pexels-heyho-7195899.jpg"
@@ -93,6 +100,7 @@
       "bedroom": 0,
       "bathroom": 2,
       "area": "3500 sqft",
+      "floorplan": ["/plan2.jpg"],
       "images": [
         "/Image/properties/pexels-heyho-7195899.jpg",
         "/Image/properties/pexels-heyho-7018850.jpg"
@@ -110,6 +118,7 @@
       "bedroom": 5,
       "bathroom": 4,
       "area": "4200 sqft",
+      "floorplan": ["/plan2.jpg"],
       "images": [
         "/Image/properties/house.jpg",
         "/Image/properties/pexels-heyho-7018850.jpg"
@@ -127,6 +136,7 @@
       "bedroom": 2,
       "bathroom": 1,
       "area": "1000 sqft",
+      "floorplan": ["/plan2.jpg"],
       "images": [
         "/Image/properties/pexels-heyho-7533763.jpg",
         "/Image/properties/pexels-heyho-7533763.jpg"
@@ -144,6 +154,7 @@
       "bedroom": 3,
       "bathroom": 3,
       "area": "2000 sqft",
+      "floorplan": ["/plan2.jpg"],
       "images": [
         "/Image/properties/pexels-heyho-7018850.jpg",
         "/Image/properties/pexels-heyho-7533763.jpg"
@@ -161,6 +172,7 @@
       "bedroom": 0,
       "bathroom": 2,
       "area": "3500 sqft",
+      "floorplan": ["/plan2.jpg"],
       "images": [
         "/Image/properties/pexels-heyho-7195899.jpg",
         "/Image/properties/pexels-heyho-7533763.jpg"

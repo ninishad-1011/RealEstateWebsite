@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import data from "../../../../data/propertiy.json";
-import agentsData from "../../../../data/bestagent.json"; // agents JSON
+import agentsData from "../../../../data/bestagent.json"; 
 import dynamic from "next/dynamic";
 
 // Slider only load on client
@@ -10,8 +10,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function PropertyDetails({ params }) {
-  // Next.js 15+ migration support
-  const { id } = params; // সরাসরি use করা ঠিক আছে এখন
+  const [activeTab, setActiveTab] = useState("video");
+  const { id } = params;
 
   const property = data.properties.find((item) => item.id === Number(id));
 
@@ -121,6 +121,77 @@ export default function PropertyDetails({ params }) {
           </div>
         </div>
       </div>
+      <div className="flex gap-4 ">
+        <button
+          className={`px-4 py-2 font-semibold ${
+            activeTab === "video" ? "border-b-4 border-green-500" : ""
+          }`}
+          onClick={() => setActiveTab("video")}
+        >
+          Video
+        </button>
+        <button
+          className={`px-4 py-2 font-semibold ${
+            activeTab === "floor" ? "border-b-4 border-green-500" : ""
+          }`}
+          onClick={() => setActiveTab("floor")}
+        >
+          Floor Plans
+        </button>
+        <button
+          className={`px-4 py-2 font-semibold ${
+            activeTab === "map" ? "border-b-4 border-green-500" : ""
+          }`}
+          onClick={() => setActiveTab("map")}
+        >
+          Map
+        </button>
+      </div>
+
+      <div className="mt-6">
+        {activeTab === "video" && (
+          <iframe
+            width="100%"
+            height="500"
+            src={
+              property.videoUrl || "https://www.youtube.com/embed/LukkDCKSglU"
+            }
+            title="Property Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="rounded-md"
+          ></iframe>
+        )}
+
+        {activeTab === "floor" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {property.floorplan.map((img, index) => (
+            <div key={index} className="flex justify-center">
+              <img
+                src={img}
+                alt={`${property.title} ${index + 1}`}
+                className="w-full h-[600px] object-cover object-center rounded-xl"
+              />
+            </div>
+          ))}
+          </div>
+        )}
+
+        {activeTab === "map" && (
+          <iframe
+            src={property.mapUrl || "https://www.google.com/maps/embed?..."}
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="rounded-md"
+          ></iframe>
+        )}
+      </div>
 
       {/* Contact Agent */}
       <div className="my-20">
@@ -136,17 +207,21 @@ export default function PropertyDetails({ params }) {
             />
             <div className="ml-5 my-10">
               <h3 className="text-xl md:text-4xl font-bold">{agent.name}</h3>
-              <p className="text-gray-700 font-normal text-2xl mt-4">{agent.description}</p>
-              <p className="text-gray-700 text-2xl font-semibold py-4">Contact: {agent.phone}</p>
-              <p className="text-gray-700 text-[20px] font-semibold"> Email: {agent.email}</p>
-              
+              <p className="text-gray-700 font-normal text-2xl mt-4">
+                {agent.description}
+              </p>
+              <p className="text-gray-700 text-2xl font-semibold py-4">
+                Contact: {agent.phone}
+              </p>
+              <p className="text-gray-700 text-[20px] font-semibold">
+                {" "}
+                Email: {agent.email}
+              </p>
             </div>
           </div>
 
-          <div  className="justify-center items-center">
+          <div className="justify-center items-center">
             <form className="max-w-xl mx-auto bg-white p-8  space-y-6">
-        
-
               {/* Name */}
               <div className="">
                 <label
