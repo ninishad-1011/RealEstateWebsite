@@ -1,10 +1,8 @@
+
 import AgentsCard from "@/agent";
 import React from "react";
 
-
-
-export default function page() {
-
+export default function Page() {
   return (
     <div className="bg-white">
       <div className="container mx-auto px-4 sm:px-6 md:px-10 mt-6 sm:mt-10 mb-10">
@@ -17,13 +15,10 @@ export default function page() {
             Agents List
           </p>
         </div>
-        <div>
-          
-        </div>
 
-        {/* Content Section */}
+      
         <div>
-          <AgentsCard />
+          <AgentsCard limit={8} /> 
         </div>
       </div>
     </div>

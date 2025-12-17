@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +17,8 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="container mx-auto px-4 flex items-center justify-between h-20">
-        {/* Logo */}
+    <nav className="bg-white shadow-sm w-full">
+      <div className="container mx-auto max-w-full px-4 sm:px-6 md:px-10 flex items-center justify-between h-20">
         <h1 className="text-3xl sm:text-4xl font-bold text-black">
           Nafi <span className="text-green-600">Agency</span>
         </h1>
@@ -28,7 +26,10 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6 text-lg font-medium text-black">
           {menu.map((item, index) => {
-            const isActive = pathname === item.path;
+            const isActive =
+              item.path === "/"
+                ? pathname === "/"
+                : pathname?.startsWith(item.path);
             return (
               <Link
                 key={index}
@@ -41,8 +42,6 @@ export default function Navbar() {
               </Link>
             );
           })}
-
-      
         </div>
 
         {/* Mobile Hamburger */}
@@ -78,46 +77,19 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu (Home + Sign Up only) */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden justify-center text-center bg-white shadow-md px-4 py-4 flex flex-col gap-3">
-          <Link
-            href="/"
-            className="hover:text-green-600 text-black transition-colors duration-300"
-            onClick={() => setIsOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className="hover:text-green-600 text-black transition-colors duration-300"
-            onClick={() => setIsOpen(false)}
-          >
-            About
-          </Link>
-          <Link
-            href="/pages/Properties"
-            className="hover:text-green-600 text-black transition-colors duration-300"
-            onClick={() => setIsOpen(false)}
-          >
-          Property
-          </Link>
-          <Link
-            href="/pages/Besagent"
-            className="hover:text-green-600 text-black transition-colors duration-300"
-            onClick={() => setIsOpen(false)}
-          >
-            Agent
-          </Link>
+        <div className="md:hidden w-full bg-white shadow-md px-4 py-4 flex flex-col gap-3">
+          {menu.map((item, index) => (
             <Link
-            href="/Contact"
-            className="hover:text-green-600 text-black transition-colors duration-300"
-            onClick={() => setIsOpen(false)}
-          >
-            Contact
-          </Link>
-
-    
+              key={index}
+              href={item.path}
+              className="hover:text-green-600 text-black transition-colors duration-300 w-full text-left"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
       )}
     </nav>

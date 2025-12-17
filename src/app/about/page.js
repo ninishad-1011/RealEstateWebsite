@@ -4,27 +4,27 @@ import Image from "next/image";
 import React from "react";
 
 function Page() {
-     
   return (
-    <div className="container mx-auto text-black mt-10 px-4">
+    <div className="container mx-auto text-black mt-10 px-4 sm:px-6 md:px-10">
       {/* Heading */}
-      <div className="border-l-4 border-green-500 text-black mb-12">
-        <h1 className="text-black text-4xl sm:text-5xl md:text-6xl font-bold px-4 py-3">
+      <div className="border-l-4 border-green-500 mb-12 pl-4 sm:pl-6">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">
           Unlocking Dreams, Opening New Doors
         </h1>
       </div>
 
       {/* Image container */}
-      <div className="relative w-full h-[400px] sm:h-[500px] md:h-[700px] mb-12">
+      <div className="relative w-full h-[400px] sm:h-[500px] md:h-[700px] mb-12 rounded-lg overflow-hidden">
         <Image
           src="/Image/testimonial/pexels-fauxels-3184416.jpg"
           alt="cover"
           className="object-cover"
           fill
+          priority
         />
 
         {/* Card overlay */}
-        <div className="absolute bottom-4 sm:bottom-8 md:bottom-10 left-4 sm:left-8 md:left-10 bg-green-500 bg-opacity-90 p-4 sm:p-6 md:p-8 shadow-lg max-w-xs sm:max-w-sm">
+        <div className="absolute bottom-4 sm:bottom-8 md:bottom-10 left-4 sm:left-8 md:left-10 bg-green-500 bg-opacity-90 p-4 sm:p-6 md:p-8 shadow-lg max-w-xs sm:max-w-sm rounded-md">
           <h2 className="text-1xl sm:text-3xl md:text-4xl font-bold text-black mb-2">
             NafiAgency Since 2025
           </h2>
@@ -33,7 +33,7 @@ function Page() {
       </div>
 
       {/* About section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-16 items-center">
         <div className="w-full">
           <Image
             src={"/Image/agent/580109131_809851498558825_7627810979567079511_n.jpg"}
@@ -41,6 +41,7 @@ function Page() {
             height={1300}
             alt="me"
             className="w-full h-auto object-cover rounded-md"
+            priority
           />
         </div>
         <div className="flex flex-col justify-center">
@@ -49,31 +50,23 @@ function Page() {
             <span className="border-b-4 border-green-500">Nishad</span>
           </h1>
           <p className="leading-relaxed text-base sm:text-lg md:text-[20px]">
-            Proper care and attention are essential for achieving success. It
-            is important to approach each task with focus and dedication. A
-            strong foundation and consistent effort will ensure steady growth
-            and positive results. Challenges are opportunities to learn and
-            improve, helping you build resilience and confidence.
+            Proper care and attention are essential for achieving success...
             <br />
             <br />
-            Continuous improvement requires persistence and careful planning.
-            By staying committed and managing your time effectively, you can
-            accomplish your goals while maintaining balance. Every step you
-            take toward progress adds value and strengthens your journey toward
-            long-term success.
+            Continuous improvement requires persistence and careful planning...
           </p>
         </div>
       </div>
 
       {/* Team Section */}
       <div className="mb-16">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 mb-6">
           <h1 className="text-3xl sm:text-2xl md:text-4xl font-bold text-black">
-        Meet Our Teams
+            Meet Our Teams
           </h1>
           <Link
             href={"/pages/Besagent"}
-            className="text-base text-white md:text-white sm:text-lg bg-green-800 md:hover:bg-green-600 hover:cursor-pointer px-3 py-1 rounded"
+            className="text-base text-white sm:text-lg bg-green-800 hover:bg-green-600 px-3 py-1 rounded transition"
           >
             View All
           </Link>

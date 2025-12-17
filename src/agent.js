@@ -1,8 +1,6 @@
 'use client'
 import React from "react";
 import agentsData from "../data/bestagent.json"; 
-
-// React Icons for social links
 import { FaFacebook, FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
 
 export default function AgentsCard({ limit = 8 }) {
@@ -14,17 +12,23 @@ export default function AgentsCard({ limit = 8 }) {
           key={agent.id}
           className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:-translate-y-2 transition-all duration-300"
         >
-          <img
-            src={agent.image}
-            alt={agent.name}
-            className="w-full h-64 sm:h-72 md:h-80 object-cover"
-          />
+          {/* Image Container with aspect ratio */}
+          <div className="w-full aspect-[4/5] relative">
+            <img
+              src={agent.image}
+              alt={agent.name}
+              className="w-full h-full object-cover rounded-t-xl"
+            />
+          </div>
 
-          <div className="p-4">
-            <h2 className="text-lg sm:text-xl md:text-xl text-black font-semibold">{agent.name}</h2>
-            <p className="text-gray-600 text-sm sm:text-base">{agent.designation}</p>
-            <p className="text-gray-700 text-sm sm:text-base mt-1">Contact: {agent.phone}</p>
-            <p className="text-gray-700 text-sm sm:text-base">Email: {agent.email}</p>
+          {/* Content */}
+          <div className="p-4 flex flex-col justify-between h-full">
+            <div>
+              <h2 className="text-lg sm:text-xl md:text-xl text-black font-semibold">{agent.name}</h2>
+              <p className="text-gray-600 text-sm sm:text-base">{agent.designation}</p>
+              <p className="text-gray-700 text-sm sm:text-base mt-1">Contact: {agent.phone}</p>
+              <p className="text-gray-700 text-sm sm:text-base">Email: {agent.email}</p>
+            </div>
 
             {/* Social Links */}
             <div className="flex gap-3 sm:gap-4 mt-3 text-lg sm:text-xl text-gray-600">

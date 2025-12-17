@@ -1,19 +1,20 @@
 "use client";
 
-import React, { useRef, useState, use } from "react";
+import React, { useRef, useState } from "react";
 import data from "../../../../data/propertiy.json";
 import agentsData from "../../../../data/bestagent.json";
 import dynamic from "next/dynamic";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 
-const Slider = dynamic(() => import("react-slick"), { ssr: false });
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// Slider only load on client
+const Slider = dynamic(() => import("react-slick"), { ssr: false });
+
 export default function PropertyDetails({ params }) {
-  const { id } = use(params); 
+  const { id } = params; // ✅ fixed, no use()
   const [activeTab, setActiveTab] = useState("video");
 
   const property = data.properties.find((item) => item.id === Number(id));
@@ -23,15 +24,11 @@ export default function PropertyDetails({ params }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
     message: "",
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const sendEmail = (e) => {
@@ -53,13 +50,7 @@ export default function PropertyDetails({ params }) {
           confirmButtonColor: "#16a34a",
         });
 
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-
+        setFormData({ name: "", email: "", message: "" });
         form.current.reset();
       })
       .catch((error) => {
@@ -80,7 +71,7 @@ export default function PropertyDetails({ params }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
   };
 
   if (!property) {
@@ -147,7 +138,7 @@ export default function PropertyDetails({ params }) {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 mt-8">
+      <div className="flex gap-4 mt-8 flex-wrap">
         {["video", "floor", "map"].map((tab) => (
           <button
             key={tab}
@@ -162,10 +153,10 @@ export default function PropertyDetails({ params }) {
       </div>
 
       {/* Tab Content */}
-      <div className="mt-4 flex justify-center items-center">
+      <div className="mt-4 flex justify-center items-center flex-col md:flex-row gap-4">
         {activeTab === "video" && (
           <iframe
-            width="1200"
+            width="100%"
             height="550"
             src="https://www.youtube.com/embed/4609MKHnaZk?si=SADs7EspXNspdEbX"
             title="YouTube video player"
@@ -184,7 +175,7 @@ export default function PropertyDetails({ params }) {
               <img
                 key={i}
                 src={img}
-                className="w-[1200px] h-[550px] object-cover rounded-xl"
+                className="w-full md:w-[1200px] h-auto object-cover rounded-xl"
                 loading="lazy"
               />
             ))}
@@ -194,7 +185,7 @@ export default function PropertyDetails({ params }) {
         {activeTab === "map" && (
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3648.4564635560855!2d90.29823358667907!3d23.87342726823454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1765978963715!5m2!1sen!2sbd"
-            className="w-[1200px] h-[550px] rounded-xl"
+            className="w-full md:w-[1200px] h-[550px] rounded-xl"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
@@ -211,12 +202,12 @@ export default function PropertyDetails({ params }) {
 
         <div className="flex flex-col md:flex-row gap-8">
           {/* Agent Info */}
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-col md:flex-row">
             <img
               src={agent.image}
-              className="w-[350px] rounded-md object-cover"
+              className="w-full md:w-[350px] rounded-md object-cover"
             />
-            <div>
+            <div className="flex flex-col justify-center">
               <h3 className="text-xl font-bold">{agent.name}</h3>
               <p>{agent.description}</p>
               <p className="font-semibold mt-2">{agent.phone}</p>
